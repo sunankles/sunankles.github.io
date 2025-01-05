@@ -37,6 +37,30 @@
             z-index: 1000;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+            }
+
+        .social-icon {
+            color: #1a1a1a;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.2rem;
+            }
+
+        .social-icon:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
 
         nav {
             display: flex;
@@ -80,8 +104,8 @@
             width: 100%;
         }
 
-        /* Hero Section */
-        .hero {
+         /* Hero Section */
+         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
@@ -101,6 +125,7 @@
             font-weight: 300;
             line-height: 1.2;
             letter-spacing: -1px;
+            text-align: left;
         }
 
         .hero-content p {
@@ -110,7 +135,7 @@
             font-weight: 300;
             max-width: 600px;
         }
-
+        
         /* Portfolio Section */
         .portfolio {
             padding: 8rem 0;
@@ -231,60 +256,79 @@
             transform: translateY(0);
         }
 
-        /* Modal */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* Project Details Section */
+        .project-details {
+            background-color: #fafafa;
+        }
+
+        .project-detail-section {
+            padding: 6rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            scroll-margin-top: 100px;
+        }
+
+        .project-detail-section:last-child {
+            border-bottom: none;
+        }
+
+        .project-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .project-detail-image {
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1001;
-            padding: 2rem;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .modal.active {
-            display: flex;
+        .project-description {
+            color: #444;
         }
 
-        .modal-content {
-            max-width: 1200px;
-            width: 100%;
-            background: white;
-            padding: 2rem;
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
+        .project-description h3 {
             font-size: 1.5rem;
-            cursor: pointer;
+            margin: 2rem 0 1rem;
+            font-weight: 400;
             color: #1a1a1a;
         }
 
-        .modal-image {
-            width: 100%;
-            height: auto;
-            margin-bottom: 2rem;
+        .project-description h3:first-child {
+            margin-top: 0;
         }
 
-        .modal-details h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 400;
-        }
-
-        .modal-details p {
-            color: #666;
+        .project-description p {
             margin-bottom: 1.5rem;
             line-height: 1.8;
+        }
+
+        .project-description ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .project-description li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .project-description li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #666;
+        }
+
+        @media (min-width: 768px) {
+            .project-content {
+                grid-template-columns: 1fr 1fr;
+                align-items: start;
+            }
         }
 
         /* Contact Section */
@@ -393,7 +437,12 @@
 <body>
     <header>
         <nav class="container">
-            <div class="logo">Portfolio</div>
+            <div class="logo-container">
+                <div class="logo">
+                    <a href="https://linkedin.com/in/meheranklesaria" class="social-icon" target="_blank" rel="noopener noreferrer">Meher Anklesaria                         
+                    </a>    
+                </div>                                        
+            </div>
             <div class="nav-links">
                 <a href="#home">Home</a>
                 <a href="#portfolio">Portfolio</a>
@@ -405,9 +454,8 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Creating Digital Experiences</h1>
-                <p>A portfolio of carefully crafted works in design and development, focused on creating meaningful and elegant solutions.</p>
-                <button>View Portfolio</button>
+                <h1>Hello!  My name is Meher, and I am a first-year Graphic Design student at Cal Poly pursuing a career in UX/UI! (ෆ˙ᵕ˙ෆ)♡</h1>
+                <button onclick="document.getElementById('portfolio').scrollIntoView({behavior: 'smooth'})">View Portfolio</button>
             </div>
         </div>
     </section>
@@ -417,82 +465,217 @@
             <h2 class="section-title">Portfolio</h2>
             <div class="filter-nav">
                 <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="web">Web Design</button>
-                <button class="filter-btn" data-filter="brand">Branding</button>
-                <button class="filter-btn" data-filter="app">Applications</button>
+                <button class="filter-btn" data-filter="design">Design</button>
+                <button class="filter-btn" data-filter="art">Art</button>
             </div>
 
-            <div class="portfolio-grid">
-                <div class="portfolio-item" data-category="web">
-                    <img src="/api/placeholder/600/450" alt="Project 1">
+            <div class="portfolio-grid">                
+                <div class="portfolio-item" data-category="design">
+                    <img src="./images/pinterest_redesign.jpg" alt="Pinterest Redesign">
                     <div class="portfolio-item-overlay">
-                        <h3>Modern Web Platform</h3>
-                        <p>A sophisticated web application focusing on user experience</p>
+                        <h3>Pinterest Redesign</h3>                       
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="brand">
-                    <img src="/api/placeholder/600/450" alt="Project 2">
+                <div class="portfolio-item" data-category="design">
+                    <img src="./images/midlake_veterinary_hospital.png" alt="Midlakes Veterinarian">
                     <div class="portfolio-item-overlay">
-                        <h3>Brand Identity</h3>
-                        <p>Complete brand redesign for a luxury brand</p>
+                        <h3>Midlakes Veterinarian Website Redesign</h3>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="app">
-                    <img src="/api/placeholder/600/450" alt="Project 3">
+                <div class="portfolio-item" data-category="design">
+                    <img src="./images/newport_ski_swap.png" alt=Newport Ski Swap">
                     <div class="portfolio-item-overlay">
-                        <h3>Mobile Application</h3>
-                        <p>iOS and Android app for productivity enhancement</p>
+                        <h3>Newport Ski Swap Logo Design</h3>                    
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="web">
-                    <img src="/api/placeholder/600/450" alt="Project 4">
+                <div class="portfolio-item" data-category="design">
+                    <img src="./images/Parable_of_the_Sower_Redesigned_Cover.png" alt="Parable of the Sower Cover Redesign">
                     <div class="portfolio-item-overlay">
-                        <h3>E-commerce Platform</h3>
-                        <p>Custom e-commerce solution with advanced features</p>
+                        <h3>Parable of the Sower Cover Redesign</h3>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="brand">
-                    <img src="/api/placeholder/600/450" alt="Project 5">
+                <div class="portfolio-item" data-category="art">
+                    <img src="./images/narrative_portrait.jpg" alt="Narrative Portrait">
                     <div class="portfolio-item-overlay">
-                        <h3>Visual Identity</h3>
-                        <p>Comprehensive visual system for a tech startup</p>
+                        <h3>Narrative Portrait in Charcoal</h3>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="app">
-                    <img src="/api/placeholder/600/450" alt="Project 6">
+                <div class="portfolio-item" data-category="art">
+                    <img src="./images/childhood.png" alt="Childhood in Mumbai">
                     <div class="portfolio-item-overlay">
-                        <h3>Web Application</h3>
-                        <p>Cloud-based project management tool</p>
+                        <h3>Childhood in Mumbai (Graphite)</h3>                        
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="art">
+                    <img src="./images/narrative.jpg" alt="Narrative">
+                    <div class="portfolio-item-overlay">
+                        <h3>Narrative in Charcoal</h3>                       
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="art">
+                    <img src="./images/glass_reflection_drawing.jpg" alt="Glass and Reflections Drawing in Charcoal">
+                    <div class="portfolio-item-overlay">
+                        <h3>Glass and Reflections Drawing in Charcoal</h3>                       
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="art">
+                    <img src="./images/portrait.jpg" alt="Portrait in Charcoal">
+                    <div class="portfolio-item-overlay">
+                        <h3>Portrait in Charcoal</h3>                       
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="art">
+                    <img src="./images/gesture_drawing.jpg" alt="Gesture Drawing">
+                    <div class="portfolio-item-overlay">
+                        <h3>Gesture Drawing</h3>                
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="art">
+                    <img src="./images/study.jpg" alt="Charcoal Study">
+                    <div class="portfolio-item-overlay">
+                        <h3>Charcoal Study</h3>                       
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="modal">
-        <div class="modal-content">
-            <button class="modal-close">×</button>
-            <img class="modal-image" src="" alt="Project Detail">
-            <div class="modal-details">
-                <h2></h2>
-                <p></p>
+    <!-- Project Details Sections -->
+    <section class="project-details">
+        <div class="container">
+            <div id="project1" class="project-detail-section">
+                <h2 class="section-title">Pinterest Resdesign</h2>
+                <div class="project-content">
+                    <img src="./images/lofi.png" alt="Low-Fidelity Frame" class="project-detail-image">
+                    <img src="./images/pinterest_redesign.jpg" alt="Mid-Fidelity Frame" class="project-detail-image">
+                    <div class="project-description">
+                        <h3>Overview</h3>
+                        <p>Implemented User Research through user interviews and usability testing to redesign Pinterest to best support users’ interests as well as make it more business-oriented. Created low and medium-fidelity frames for testing. </p>
+                          <p>  <a href="https://www.figma.com/board/8aW6mAV3ifvNAPDRkMy4TJ/Pinterest-Redesign?node-id=162-374">FigJam Board Link</a></p>  <p> Tools used: Figma </p>
+                    </div>
+                </div>
+            </div>
+            <div id="project2" class="project-detail-section">
+                <h2 class="section-title">Midlakes Veterinarian Hospital</h2>
+                <div class="project-content">
+                    <img src="./images/midlake_veterinary_hospital.png" alt="Midlakes" class="project-detail-image">
+                    <div class="project-description">
+                        <h3>Overview</h3>
+                        <p>Redesigned website for local vet as part of a DECA project. Consulted with team to come up with the easiest format for use possible.</p>
+                        <p>Tools Used: Wix</p>
+                    </div>
+                </div>
+            </div>
+            <div id="project3" class="project-detail-section">
+                <h2 class="section-title">Ski Swap Logo and T-Shirt Design</h2>
+                <div class="project-content">
+                    <img src="./images/newport_ski_swap.png" alt="Mobile Application" class="project-detail-image">
+                    <div class="project-description">
+                        <h3>Overview</h3>
+                        <p>Designed a logo for high school’s annual Ski Swap meant to generate funds and give loved ski equipment a new home.</p>
+                        <p>Tools used: Adobe Photoshop, Adobe Illustrator, Autodesk Sketchbook</p>                      
+                    </div>
+                </div>
+            </div>
+            <div id="project4" class="project-detail-section">
+                <h2 class="section-title">Parable of the Sower Cover Redesign</h2>
+                <div class="project-content">
+                    <img src="./images/Parable_of_the_Sower_Redesigned_Cover.png" alt="Parable of the Sower Redesigned Cover" class="project-detail-image">
+                    <div class="project-description">
+                        <h3>Overview</h3>
+                        <p>Redesigned the cover of my favorite book to incorporate one of the main themes of the book. </p>
+                        <p> Tools used: Adobe Photoshop, Adobe Illustrator</p>
+                    </div>
+                </div>
+            </div>
+            <div id="project5" class="project-detail-section">
+                <h2 class="section-title">Narrative Portrait</h2>
+                <div class="project-content">
+                    <img src="./images/narrative_portrait.jpg" alt="Narrative Portrait" class="project-detail-image">
+                    <div class="project-description">
+                        <h3>Overview</h3>
+                        <p>Composed using vine and brick charcoal.</p>
+                    </div>
+                </div>
+            </div>
+            <div id="project6" class="project-detail-section">
+                <h2 class="section-title">Childhood in Mumbai</h2>
+                <div class="project-content">
+                    <img src="./images/childhood.png" alt="Childhood" class="project-detail-image">
+                    <div class="project-description">
+                        <h3>Overview</h3>
+                        <p>Composed using graphite pencils.</p>                      
+                    </div>
+                </div>
+            </div>
+            <div id="project7" class="project-detail-section">
+                <h2 class="section-title">Narrative</h2>
+                <div class="project-content">
+                    <img src="./images/narrative.jpg" alt="Narrative" class="project-detail-image">
+                    <div class="project-description">
+                        <h3>Overview</h3>
+                        <p>Composed using vine and brick charcoal.</p>                      
+                    </div>
+                </div>
+            </div>
+            <div id="project8" class="project-detail-section">
+                <h2 class="section-title">Glass and Reflections Drawing in Charcoal</h2>
+                <div class="project-content">
+                    <img src="./images/glass_reflection_drawing.jpg" alt="Glass and Reflections Drawing in Charcoal" class="project-detail-image">
+                    <div class="project-description">
+                        <h3>Overview</h3>
+                        <p>Composed using vine and brick charcoal.</p>                      
+                    </div>
+                </div>
+            </div>
+            <div id="project9" class="project-detail-section">
+                <h2 class="section-title">Portrait in Charcoal</h2>
+                <div class="project-content">
+                    <img src="./images/portrait.jpg" alt="Portrait in Charcoal" class="project-detail-image">
+                    <div class="project-description">
+                        <h3>Overview</h3>
+                        <p>Composed using vine and brick charcoal.</p>                      
+                    </div>
+                </div>
+            </div>
+            <div id="project10" class="project-detail-section">
+                <h2 class="section-title">Gesture Drawing</h2>
+                <div class="project-content">
+                    <img src="./images/gesture_drawing.jpg" alt="Gesture Drawing" class="project-detail-image">
+                    <div class="project-description">
+                        <h3>Overview</h3>
+                        <p>Composed vine and brick charcoal.</p>                      
+                    </div>
+                </div>
+            </div>
+            <div id="project11" class="project-detail-section">
+                <h2 class="section-title">Study</h2>
+                <div class="project-content">
+                    <img src="./images/study.jpg" alt="Study" class="project-detail-image">
+                    <div class="project-description">
+                        <h3>Overview</h3>
+                        <p>Composed using vine and brick charcoal.</p>                      
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Get in Touch</h2>
-            <form class="contact-form">
+            <form class="contact-form" action="https://formspree.io/f/mgvvpzzo" method="POST">
                 <div class="form-group">
-                    <input type="text" placeholder="Name" required>
+                    <input type="text" name="name" placeholder="Name" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Email" required>
+                    <input type="email" name="_replyto" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                    <textarea placeholder="Message" rows="5" required></textarea>
+                    <textarea name="message" placeholder="Message" rows="5" required></textarea>
                 </div>
+                <!-- Anti-spam honeypot field -->
+                <input type="text" name="_gotcha" style="display: none;">
                 <button type="submit">Send Message</button>
             </form>
         </div>
@@ -504,6 +687,32 @@
         </div>
     </footer>
     <script>
+
+            // Gradient mouse move effect for all sections
+            const sections = document.querySelectorAll('.hero, .portfolio, .contact');
+        
+        sections.forEach(section => {
+            section.addEventListener('mousemove', (e) => {
+                const rect = section.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                
+                if (section.classList.contains('hero')) {
+                    section.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(255, 67, 0, 0.3), rgba(255, 67, 0, 0.15))`;
+                } else {
+                    section.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(255, 67, 0, 0.15), rgba(255, 67, 0, 0.05))`;
+                }
+            });
+
+            // Reset gradient on mouse leave
+            section.addEventListener('mouseleave', () => {
+                if (section.classList.contains('hero')) {
+                    section.style.background = 'radial-gradient(circle at 50% 50%, rgba(255, 67, 0,0.2), rgba(255, 67, 0, 0.1))';
+                } else {
+                    section.style.background = 'radial-gradient(circle at 50% 50%, rgba(255, 67, 0, 0.1), rgba(255, 67, 0, 0.05))';
+                }
+            });
+        });
         // Filter functionality
         const filterButtons = document.querySelectorAll('.filter-btn');
         const portfolioItems = document.querySelectorAll('.portfolio-item');
@@ -527,34 +736,13 @@
             });
         });
 
-        // Modal functionality
-        const modal = document.querySelector('.modal');
-        const modalImage = modal.querySelector('.modal-image');
-        const modalTitle = modal.querySelector('h2');
-        const modalDescription = modal.querySelector('p');
-        const modalClose = modal.querySelector('.modal-close');
-
-        portfolioItems.forEach(item => {
+        // Smooth scroll functionality for portfolio items
+        portfolioItems.forEach((item, index) => {
             item.addEventListener('click', () => {
-                const img = item.querySelector('img');
-                const title = item.querySelector('h3').textContent;
-                const description = item.querySelector('p').textContent;
-
-                modalImage.src = img.src;
-                modalTitle.textContent = title;
-                modalDescription.textContent = description;
-                modal.classList.add('active');
+                const projectId = `project${index + 1}`;
+                const projectSection = document.getElementById(projectId);
+                projectSection.scrollIntoView({ behavior: 'smooth' });
             });
-        });
-
-        modalClose.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-            }
         });
     </script>
 </body>
