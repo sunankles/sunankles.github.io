@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meher Anklesaria — Product Designer</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="https://use.typekit.net/sox7ers.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+
+  :root{
+    --navy:#14192E;
+    --magenta:#C2287A;
+    --bg:#FAFAF8;
+    --ink:#17171F;
+    --muted:#6B6E80;
+    --line:#E6E6E1;
+    --stage:#EFEFEB;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'DM Sans',system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.65;
+  }
+  a{ color:inherit; }
+
+  .layout{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+    display:grid;
+    grid-template-columns:230px 1fr;
+    gap:72px;
+  }
+
+  /* ---------- SIDEBAR ---------- */
+  aside{
+    position:sticky;
+    top:0;
+    align-self:start;
+    height:100vh;
+    padding:40px 0;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .brand{
+    font-family:'DM Sans',system-ui,sans-serif;
+    font-weight:600;
+    letter-spacing:-0.02em;
+    font-size:30px;
+    color:var(--navy);
+    text-decoration:none;
+    display:inline-block;
+    margin-bottom:36px;
+  }
+  .index{ list-style:none; margin:0; padding:0; }
+  .index li{ margin:0 0 4px; }
+  .index a{
+    font-family:'DM Sans',system-ui,sans-serif;
+    font-size:14px;
+    color:var(--muted);
+    text-decoration:none;
+    display:flex;
+    gap:8px;
+    padding:5px 0;
+    transition:color 0.2s ease, transform 0.2s ease;
+  }
+  .index a::before{ content:'↪︎'; opacity:0; transition:opacity 0.2s ease; color:var(--magenta); }
+  .index a:hover{ color:var(--navy); }
+  .index a.active{ color:var(--navy); transform:translateX(2px); }
+  .index a.active::before{ opacity:1; }
+  .side-links{
+    font-family:'DM Sans',system-ui,sans-serif;
+    font-size:14px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .side-links a{ color:var(--muted); text-decoration:none; }
+  .side-links a:hover{ color:var(--magenta); }
+
+  /* ---------- MAIN ---------- */
+  main{ padding:72px 0 120px; min-width:0; }
+
+  .intro{ max-width:620px; margin-bottom:96px; }
+  .intro h1{
+    font-family:'DM Sans',system-ui,sans-serif;
+    font-weight:600;
+    font-size:clamp(34px,5vw,52px);
+    line-height:1.08;
+    letter-spacing:-0.035em;
+    color:var(--navy);
+    margin:0 0 18px;
+  }
+  .intro h1 em{ color:var(--muted); font-style:normal; }
+  .intro p{ margin:0 0 10px; color:var(--ink); }
+  .intro .status{
+    font-family:'DM Sans',system-ui,sans-serif;
+    font-size:14px;
+    color:var(--muted);
+    margin-top:18px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .status i{
+    width:7px;height:7px;border-radius:50%;
+    background:#3FA77A;
+    display:inline-block;
+  }
+
+  /* ---------- PROJECT SECTION ---------- */
+  .project{
+    padding-bottom:104px;
+    scroll-margin-top:40px;
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .project.in{ opacity:1; transform:none; }
+
+  .kicker{
+    font-family:'DM Sans',system-ui,sans-serif;
+    font-size:14px;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  .kicker b{ color:var(--magenta); font-weight:500; margin-right:10px; }
+  .project h2{
+    font-family:'DM Sans',system-ui,sans-serif;
+    font-weight:500;
+    font-size:clamp(26px,3.4vw,34px);
+    color:var(--navy);
+    margin:0 0 8px;
+    line-height:1.15;
+    letter-spacing:-0.03em;
+  }
+  .tagline{ color:var(--muted); margin:0 0 28px; max-width:560px; }
+
+  .stage{
+    position:relative;
+    background:var(--stage);
+    border-radius:14px;
+    overflow:hidden;
+    aspect-ratio:16/9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:32px;
+  }
+
+  .lead{
+    font-weight:600;
+    max-width:620px;
+    margin:0 0 10px;
+    color:var(--ink);
+  }
+  .body{ max-width:620px; color:var(--muted); margin:0 0 22px; }
+
+  .label{
+    font-family:'DM Sans',system-ui,sans-serif;
+    font-size:14px;
+    font-weight:500;
+    color:var(--ink);
+    margin:0 0 8px;
+  }
+  .highlights{
+    list-style:none; padding:0; margin:0 0 22px; max-width:620px;
+  }
+  .highlights li{
+    position:relative;
+    padding-left:18px;
+    margin-bottom:8px;
+    color:var(--ink);
+    font-size:15px;
+  }
+  .highlights li::before{
+    content:'';
+    position:absolute; left:0; top:11px;
+    width:6px;height:6px;border-radius:50%;
+    background:var(--magenta);
+  }
+  .cs-link{
+    font-family:'DM Sans',system-ui,sans-serif;
+    font-size:14px;
+    font-weight:500;
+    color:var(--navy);
+    text-decoration:none;
+    border-bottom:1.5px solid var(--line);
+    padding-bottom:2px;
+    transition:border-color 0.2s ease, color 0.2s ease;
+  }
+  .cs-link:hover{ color:var(--magenta); border-color:var(--magenta); }
+
+  /* ---------- MORE + ABOUT ---------- */
+  .more h3, .about h3{
+    font-family:'DM Sans',system-ui,sans-serif;
+    font-weight:600;
+    letter-spacing:-0.025em;
+    font-size:24px;
+    color:var(--navy);
+    margin:0 0 16px;
+  }
+  .more ul{ list-style:none; padding:0; margin:0 0 96px; }
+  .more li{ border-top:1px solid var(--line); }
+  .more li:last-child{ border-bottom:1px solid var(--line); }
+  .more a{
+    display:flex; justify-content:space-between;
+    padding:12px 0;
+    text-decoration:none;
+    font-size:15px;
+    transition:padding-left 0.2s ease, color 0.2s ease;
+  }
+  .more a span{ font-family:'DM Sans',system-ui,sans-serif; font-size:14px; color:var(--muted); }
+  .more a:hover{ padding-left:8px; color:var(--magenta); }
+
+  .about{ max-width:620px; margin-bottom:64px; }
+  .about p{ margin:0 0 14px; }
+  .about ul{ margin:0; padding-left:18px; color:var(--muted); }
+  .about li{ margin-bottom:4px; }
+
+  footer{
+    font-family:'DM Sans',system-ui,sans-serif;
+    font-size:13px;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+    padding-top:20px;
+  }
+
+  /* ---------- STAGE 1: laptop scroll ---------- */
+  .laptop{ width:58%; background:#1A1A22; border-radius:10px 10px 2px 2px; padding:10px 10px 16px; box-shadow:0 20px 40px rgba(0,0,0,0.15); }
+  .screen{ background:#fff; border-radius:4px; aspect-ratio:16/10; overflow:hidden; position:relative; }
+  .scroll{ position:absolute; inset:0 0 auto 0; animation:scrollUp 9s ease-in-out infinite; }
+  .hero-block{ height:34%; background:#4A2C6B; display:flex; align-items:flex-end; padding:10px 14px; color:#fff; font-family:'DM Sans',system-ui,sans-serif; font-size:13px; }
+  .row{ display:flex; align-items:center; gap:10px; padding:12px 14px; border-bottom:1px solid #eee; }
+  .row .sw{ width:34px;height:34px;border-radius:4px;flex-shrink:0; }
+  .row .ln div{ height:5px;background:#e3e0d8;border-radius:2px;margin-bottom:5px; width:140px; }
+  .row .ln div:last-child{ width:90px; }
+  @keyframes scrollUp{
+    0%,12%{ transform:translateY(0); }
+    50%,62%{ transform:translateY(-45%); }
+    90%,100%{ transform:translateY(-82%); }
+  }
+
+  /* ---------- STAGE 2: polaroids ---------- */
+  .collage{ background:linear-gradient(135deg,#F3EAD8,#E8DAC0); }
+  .collage .head{ position:absolute; left:8%; top:50%; transform:translateY(-50%); }
+  .collage .head p{ margin:0; font-family:'DM Sans',system-ui,sans-serif; line-height:1.15; }
+  .collage .head .a{ font-size:clamp(22px,3.6vw,38px); font-weight:600; color:var(--navy); }
+  .collage .head .b{ font-size:clamp(17px,2.8vw,28px); color:var(--magenta); font-weight:500; }
+  .pol{ position:absolute; width:11%; aspect-ratio:3/3.6; background:#fff; padding:5px 5px 14px; box-shadow:0 8px 18px rgba(0,0,0,0.15); border-radius:3px; animation:drift 6s ease-in-out infinite; }
+  .pol div{ width:100%; height:100%; }
+  .pol.a{ right:30%; top:12%; --r:-8deg; }
+  .pol.b{ right:15%; top:30%; --r:6deg; animation-delay:-2s; }
+  .pol.c{ right:26%; top:54%; --r:-3deg; animation-delay:-4s; }
+  .pol.d{ right:7%; top:58%; --r:9deg; animation-delay:-1s; }
+  @keyframes drift{
+    0%,100%{ transform:rotate(var(--r)) translateY(0); }
+    50%{ transform:rotate(calc(var(--r) + 3deg)) translateY(-8px); }
+  }
+
+  /* ---------- STAGE 3: phones ---------- */
+  .phones{ background:#0E0E15; gap:5%; }
+  .phone{ width:15%; aspect-ratio:9/18.5; border-radius:20px; border:3px solid #2c2c3a; background:#1b1b26; position:relative; overflow:hidden; }
+  .phone span{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; font-family:'DM Sans',system-ui,sans-serif; color:#fff; font-size:clamp(11px,1.6vw,17px); padding:8px; opacity:0; animation:cycle 7.5s infinite; }
+  .phone span:nth-child(1){ background:#B8236F; }
+  .phone span:nth-child(2){ background:#16234F; animation-delay:2.5s; }
+  .phone span:nth-child(3){ background:#2E7D5B; animation-delay:5s; }
+  .phone.off span{ animation-delay:calc(var(--d) + 0s); }
+  .phone:nth-child(2) span{ animation-name:cycle; margin-top:0; }
+  @keyframes cycle{ 0%{opacity:0;} 6%,30%{opacity:1;} 36%,100%{opacity:0;} }
+  .phone:nth-child(2){ transform:translateY(-6%); }
+
+  /* ---------- STAGE 4: ipod wire ---------- */
+  .wire{ background:#DDE7F6; }
+  .paper{ width:70%; background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 18px 36px rgba(22,35,79,0.15); }
+  .paper .bar{ height:30px; background:linear-gradient(#EAF1FC,#DCE7F7); display:flex; align-items:center; padding:0 14px; font-family:'DM Sans',system-ui,sans-serif; font-weight:500; font-size:11px; color:var(--navy); }
+  .paper .cols{ display:grid; grid-template-columns:1fr 1.5fr 1fr; gap:10px; padding:12px; }
+  .art{ border:1.5px solid transparent; border-radius:6px; padding:8px; transition:none; }
+  .art .img{ height:46px; background:#C8D6EE; border-radius:3px; margin-bottom:7px; }
+  .art .big{ height:84px; }
+  .art div.t{ height:6px; background:#dcd8ce; border-radius:2px; margin-bottom:5px; }
+  .art div.t:nth-child(3){ width:70%; }
+  .cols .art:nth-child(1){ animation:hl 9s infinite 0s; }
+  .cols .art:nth-child(2){ animation:hl 9s infinite 3s; }
+  .cols .art:nth-child(3){ animation:hl 9s infinite 6s; }
+  @keyframes hl{
+    0%{ border-color:var(--magenta); background:#FDF3F8; transform:translateY(-3px); }
+    28%{ border-color:var(--magenta); background:#FDF3F8; transform:translateY(-3px); }
+    34%,100%{ border-color:transparent; background:transparent; transform:none; }
+  }
+
+
+  .laptop{ width:64%; }
+  .screen{ aspect-ratio:1440/1024; }
+  .shot{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; -webkit-user-drag:none; user-select:none; }
+  /* ---------- MOTION + MICRO-INTERACTIONS ---------- */
+  .tilt .laptop, .tilt .paper{
+    transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+    transition:transform 0.35s cubic-bezier(.2,.7,.2,1);
+    will-change:transform;
+  }
+  .scrub{ --p:0.5; touch-action:pan-y; cursor:ew-resize; }
+  .wire-layer{
+    position:absolute; inset:0; background:#F4F4F1; overflow:hidden;
+    clip-path:inset(0 calc((1 - var(--p)) * 100%) 0 0);
+  }
+  .wf .hero-block{ background:#E6E6E1; color:transparent; border:1px dashed #B5B5AC; }
+  .wf .row{ background:#F4F4F1; border-bottom:1px dashed #C9C9C1; }
+  .wf .row .sw{ background:#DADAD3 !important; border:1px dashed #A9A9A0; }
+  .wf .ln div{ background:#D5D5CE; }
+  .handle{
+    position:absolute; top:0; bottom:0; left:calc(var(--p) * 100%);
+    width:2px; background:var(--magenta); transform:translateX(-1px);
+    pointer-events:none;
+  }
+  .handle::before{
+    content:''; position:absolute; top:50%; left:50%; width:14px; height:14px;
+    border-radius:50%; background:var(--magenta); border:2px solid #fff;
+    transform:translate(-50%,-50%);
+    box-shadow:0 2px 6px rgba(0,0,0,0.2);
+  }
+  .handle span{
+    position:absolute; top:8px; font-size:10px; font-weight:500; padding:2px 7px;
+    border-radius:20px; background:#fff; color:var(--navy); white-space:nowrap;
+    box-shadow:0 1px 3px rgba(0,0,0,0.12);
+  }
+  .handle span:first-child{ right:10px; }
+  .handle span:last-child{ left:10px; }
+  .hint{
+    position:absolute; bottom:12px; left:0; right:0; text-align:center;
+    margin:0; font-size:13px; color:var(--muted);
+    transition:opacity 0.4s ease;
+  }
+  .scrub.touched .hint{ opacity:0; }
+
+  .cs-link .arr{ display:inline-block; transition:transform 0.25s cubic-bezier(.2,.7,.2,1); }
+  .cs-link:hover .arr{ transform:translateX(5px); }
+
+  .kicker b{ display:inline-block; transition:transform 0.3s ease; }
+  .project:hover .kicker b{ transform:translateX(3px); }
+
+  .progress{ position:fixed; top:0; left:0; height:2px; width:100%; background:var(--magenta);
+    transform-origin:left; transform:scaleX(0); z-index:50; }
+
+  /* headline word reveal */
+  .intro h1 .w{ display:inline-block; opacity:0; transform:translateY(0.5em); animation:wIn 0.7s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes wIn{ to{ opacity:1; transform:none; } }
+
+
+  /* ---------- STAGE: dirty. ---------- */
+  .dirty{ background:#F6E6D8; gap:9%; }
+  .cup{ position:relative; width:15%; aspect-ratio:3/5; clip-path:polygon(8% 0,92% 0,80% 100%,20% 100%); background:rgba(255,255,255,0.55); }
+  .layer{ position:absolute; left:0; right:0; bottom:0; transform-origin:bottom; transform:scaleY(0); animation:fill 8s ease-in-out infinite; }
+  .l1{ height:40%; background:#8A4B2E; }
+  .l2{ height:70%; background:#E8A25C; animation-delay:0.3s; mix-blend-mode:multiply; }
+  .l3{ height:85%; background:#FFF1DC; animation-delay:0.6s; opacity:0.85; }
+  .layer.l1{ z-index:1; } .l2{ z-index:2; } .l3{ z-index:3; }
+  @keyframes fill{ 0%{transform:scaleY(0);} 30%,80%{transform:scaleY(1);} 95%,100%{transform:scaleY(0);} }
+  .straw{ position:absolute; top:-8%; left:56%; width:5%; height:60%; background:#C2287A; transform:rotate(8deg); z-index:4; }
+  .book{ width:34%; background:#fff; border-radius:12px; padding:5% 5% 5%; box-shadow:0 18px 36px rgba(60,30,10,0.14); display:flex; flex-direction:column; gap:9px; }
+  .bk-title{ font-weight:600; font-size:clamp(11px,1.6vw,16px); color:var(--navy); letter-spacing:-0.02em; }
+  .steps{ display:flex; gap:5px; }
+  .s{ font-style:normal; font-size:clamp(8px,1vw,11px); padding:3px 8px; border-radius:20px; background:#F1ECE5; color:var(--muted); animation:step 6s infinite; }
+  .s2{ animation-delay:2s; } .s3{ animation-delay:4s; }
+  @keyframes step{ 0%,30%{ background:var(--magenta); color:#fff; } 36%,100%{ background:#F1ECE5; color:var(--muted); } }
+  .bk-line{ height:7px; border-radius:3px; background:#EFEAE3; } .bk-line.short{ width:60%; }
+  .bk-btn{ margin-top:4px; text-align:center; font-size:clamp(9px,1.1vw,12px); font-weight:500; padding:7px; border-radius:8px; background:var(--navy); color:#fff; animation:press 6s infinite; }
+  @keyframes press{ 0%,86%,100%{ transform:none; } 92%{ transform:scale(0.96); } }
+
+  /* ---------- STAGE: Beli ---------- */
+  .beli{ background:#E3EFEC; }
+  .bphone{ width:24%; aspect-ratio:9/17; background:#fff; border-radius:22px; border:3px solid #1b2a28; overflow:hidden; padding:9% 7%; box-shadow:0 18px 36px rgba(20,60,50,0.18); }
+  .btop{ font-weight:600; font-size:clamp(10px,1.4vw,15px); color:var(--navy); letter-spacing:-0.02em; margin-bottom:10%; }
+  .blist{ position:relative; height:60%; }
+  .brow{ position:absolute; left:0; right:0; height:27%; display:flex; align-items:center; gap:8%; padding:0 7%; border-radius:10px; background:#F2F7F6; font-size:clamp(8px,1.1vw,12px); color:var(--ink); animation-duration:6s; animation-iteration-count:infinite; animation-timing-function:cubic-bezier(.6,0,.3,1); }
+  .brow em{ font-style:normal; font-weight:600; color:var(--muted); }
+  .brow span{ flex:1; } .brow b{ font-weight:600; color:#0E7C6B; }
+  .r1{ top:0; animation-name:rk1; } .r2{ top:33%; animation-name:rk2; } .r3{ top:66%; animation-name:rk3; }
+  @keyframes rk1{ 0%,35%{ transform:translateY(0); } 50%,85%{ transform:translateY(123%); } 100%{ transform:translateY(0); } }
+  @keyframes rk2{ 0%,35%{ transform:translateY(0); } 50%,85%{ transform:translateY(-123%); background:#DDF1EC; } 100%{ transform:translateY(0); } }
+  @keyframes rk3{ 0%,100%{ transform:none; } }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:860px){
+    .layout{ grid-template-columns:1fr; gap:0; padding:0 22px; }
+    aside{ position:static; height:auto; padding:24px 0 0; }
+    .brand{ margin-bottom:16px; }
+    .index{ display:none; }
+    .side-links{ flex-direction:row; gap:18px; }
+    main{ padding-top:40px; }
+    .intro{ margin-bottom:64px; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .intro h1 .w{ opacity:1; transform:none; }
+    *{ animation:none !important; transition:none !important; }
+    .project{ opacity:1; transform:none; }
+  }
+
+  /* ---------- DISPLAY TYPE + GRAPHIC DESIGN ---------- */
+  .brand,.intro h1,.project h2,.more h3,.about h3{font-family:'please-display-vf','DM Sans',system-ui,sans-serif;letter-spacing:-0.02em;}
+  .intro h1{font-weight:500;line-height:1.04;}
+  .intro h1 .l{font-variation-settings:'wght' 450;transition:font-variation-settings .18s ease-out;}
+  .intro{position:relative;}
+  .riso{position:absolute;left:640px;top:-6px;width:210px;height:210px;pointer-events:none;}
+  .riso i{position:absolute;border-radius:50%;mix-blend-mode:multiply;transition:transform .5s cubic-bezier(.2,.7,.2,1);}
+  .riso i:first-child{width:140px;height:140px;left:0;top:10px;background:#C2287A;}
+  .riso i:last-child{width:130px;height:130px;left:70px;top:70px;background:radial-gradient(circle,#2B3FA3 0 2.4px,transparent 2.9px) 0 0/8px 8px;}
+  @media(max-width:1060px){.riso{display:none;}}
+  .gfx-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media(max-width:860px){.gfx-grid{grid-template-columns:1fr 1fr;}}
+  .poster{display:block;text-decoration:none;color:inherit;}
+  .pbox{position:relative;aspect-ratio:3/4;background:#F3EFE6;border-radius:6px;overflow:hidden;transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s;}
+  .poster:hover .pbox{transform:translateY(-6px) rotate(-1.2deg);box-shadow:0 20px 34px rgba(20,25,46,.14);}
+  .ink{position:absolute;mix-blend-mode:multiply;transition:transform .6s cubic-bezier(.2,.7,.2,1);}
+  .i1{left:var(--x1);top:var(--y1);width:var(--s1);aspect-ratio:1;background:var(--a);border-radius:var(--r1);}
+  .i2{left:var(--x2);top:var(--y2);width:var(--s2);aspect-ratio:1;background:radial-gradient(circle,var(--b) 0 2.4px,transparent 2.9px) 0 0/9px 9px;border-radius:var(--r2);}
+  .poster:hover .i1{transform:translate(-9px,7px);}
+  .poster:hover .i2{transform:translate(9px,-7px) rotate(6deg);}
+  .plet{position:absolute;left:12px;bottom:4px;font-family:'please-poster-vf','DM Sans',sans-serif;font-weight:900;font-size:clamp(76px,10vw,128px);line-height:.82;color:var(--navy);letter-spacing:-.04em;}
+  .pyr{position:absolute;top:10px;left:12px;font-size:12px;color:var(--navy);font-weight:500;}
+  .pt{display:flex;justify-content:space-between;gap:10px;font-size:14px;margin-top:10px;}
+  .pt .arrow{transition:transform .25s;} .poster:hover .arrow{transform:translateX(4px);color:var(--magenta);}
+
+  /* ---------- v10: spacing, laptop deck, canvases, folders, case view ---------- */
+  main{ padding:56px 0 96px; }
+  .intro{ margin-bottom:56px; }
+  .project{ padding-bottom:64px; }
+  .tagline{ margin-bottom:22px; }
+  .stage{ margin-bottom:24px; }
+  .gfx .tagline{ margin-bottom:22px; }
+  .laptop{ position:relative; margin-bottom:3.5%; }
+  .laptop::after{ content:''; position:absolute; top:100%; left:-9%; width:118%; height:clamp(16px,3.4vw,34px); background:#C7C9CF; clip-path:polygon(5% 0,95% 0,100% 100%,0 100%); border-radius:0 0 12px 12px; }
+  .laptop::before{ content:''; position:absolute; z-index:2; top:calc(100% + 3px); left:3%; width:94%; height:clamp(7px,1.6vw,17px);
+    background:repeating-linear-gradient(90deg,transparent 0 7px,#C7C9CF 7px 8px),repeating-linear-gradient(0deg,transparent 0 5px,#C7C9CF 5px 6px),#2A2A33;
+    clip-path:polygon(3% 0,97% 0,100% 100%,0 100%); border-radius:2px; }
+  .canvas{ position:absolute; top:0; left:0; width:1440px; height:1024px; transform-origin:0 0; transform:scale(var(--sc,.4)); font-family:'DM Sans',system-ui,sans-serif; overflow:hidden; background:#fff; color:#14141F; }
+  .canvas *{ position:absolute; margin:0; white-space:nowrap; }
+  .canvas .sd{ left:0; top:0; width:90px; height:1024px; background:#2D1450; border-radius:0 18px 18px 0; }
+  .canvas .hb{ left:27px; width:36px; height:3px; background:#fff; border-radius:2px; }
+  .ph1{ font-size:52px; font-weight:600; color:#2D1450; letter-spacing:-.02em; }
+  .ph2{ font-size:25px; color:#333; }
+  .mc{ width:460px; height:300px; border:1px solid #D9D6DE; border-radius:12px; overflow:hidden; background:#fff; }
+  .mm{ font-size:12px; color:#666; } .mt{ font-size:23px; font-weight:500; } .md{ font-size:10.5px; line-height:12px; width:290px; white-space:normal !important; color:#333; }
+  .mb{ width:88px; height:40px; border-radius:8px; background:#2D1450; color:#fff; font-size:16px; font-weight:500; text-align:center; line-height:40px; }
+  .wire-layer{ background:#fff; }
+
+  .folder{ position:relative; margin:8px 0 56px; max-width:660px; }
+  .folder::before{ content:''; position:absolute; left:104px; top:0; width:92px; height:36px; background:#F2D5E5; border-radius:12px 12px 0 0; transition:transform .3s cubic-bezier(.2,.7,.2,1); }
+  .folder .tab{ position:relative; z-index:2; display:inline-block; margin-bottom:-1px; padding:8px 24px 8px 18px; background:#fff; border:1px solid #E5CFDC; border-bottom:none; border-radius:12px 20px 0 0; font-size:14px; font-weight:500; color:var(--navy); transition:transform .3s cubic-bezier(.2,.7,.2,1); }
+  .folder .fbody{ position:relative; z-index:1; background:#fff; border:1px solid #E5CFDC; border-radius:0 16px 16px 16px; padding:22px 24px; box-shadow:0 10px 24px rgba(194,40,122,.06); }
+  .folder:hover .tab{ transform:translateY(-3px); } .folder:hover::before{ transform:translate(10px,-4px); }
+  .more.folder ul{ margin:0; } .about.folder{ margin-bottom:40px; } .about.folder p:last-child,.about.folder ul{ margin-bottom:0; }
+
+  #caseMain{ padding:56px 0 96px; min-width:0; max-width:760px; }
+  #caseMain .toplink{ display:inline-block; font-size:14px; color:var(--muted); text-decoration:none; margin-bottom:28px; }
+  #caseMain .toplink:hover{ color:var(--magenta); }
+  #caseMain h1{ font-family:'please-display-vf','DM Sans',system-ui,sans-serif; font-size:clamp(34px,5vw,52px); line-height:1.06; letter-spacing:-.02em; font-weight:600; color:var(--navy); margin:0 0 14px; }
+  #caseMain .tag{ font-size:19px; color:var(--muted); margin:0 0 30px; max-width:620px; line-height:1.5; }
+  #caseMain .folder{ max-width:none; margin-bottom:36px; } #caseMain .folder .fbody{ padding:18px 24px; }
+  #caseMain .meta{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:16px; margin:0; }
+  #caseMain .meta dt{ font-size:13px; color:var(--muted); } #caseMain .meta dd{ margin:0; font-weight:500; font-size:15px; }
+  #caseMain .fig{ margin:0 0 28px; }
+  #caseMain .fig .box{ border-radius:14px; background:#EFEFEB; aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:14px; text-align:center; padding:24px; border:1px dashed #cfcfc8; }
+  #caseMain .pair{ display:grid; grid-template-columns:1fr 1fr; gap:14px; } #caseMain .pair .fig .box{ aspect-ratio:4/3; }
+  #caseMain section.cs{ margin-bottom:44px; scroll-margin-top:32px; opacity:0; transform:translateY(14px); transition:opacity .7s,transform .7s; }
+  #caseMain section.cs.in{ opacity:1; transform:none; }
+  #caseMain h2{ font-family:'please-display-vf','DM Sans',system-ui,sans-serif; font-size:26px; letter-spacing:-.02em; font-weight:500; color:var(--navy); margin:0 0 12px; }
+  #caseMain p{ margin:0 0 14px; } #caseMain .lead{ font-weight:600; font-size:19px; line-height:1.5; }
+  #caseMain ul.hl{ list-style:none; padding:0; margin:0 0 20px; } #caseMain ul.hl li{ position:relative; padding-left:18px; margin-bottom:8px; }
+  #caseMain ul.hl li::before{ content:''; position:absolute; left:0; top:12px; width:6px; height:6px; border-radius:50%; background:var(--magenta); }
+  #caseMain .btns{ margin-bottom:36px; } #caseMain .btn{ display:inline-block; font-size:14px; font-weight:500; color:var(--navy); text-decoration:none; border-bottom:1.5px solid var(--line); padding-bottom:2px; margin:0 18px 6px 0; transition:.2s; } #caseMain .btn:hover{ color:var(--magenta); border-color:var(--magenta); }
+  #caseMain .next{ border-top:1px solid var(--line); padding-top:24px; display:flex; justify-content:space-between; gap:20px; font-size:14px; }
+  #caseMain .next a{ text-decoration:none; color:var(--muted); } #caseMain .next a b{ display:block; font-family:'please-display-vf','DM Sans',system-ui,sans-serif; font-size:22px; letter-spacing:-.02em; color:var(--navy); transition:.2s; } #caseMain .next a:hover b{ color:var(--magenta); } #caseMain .next .r{ text-align:right; }
+  .todo{ color:var(--muted); }
+  @media(max-width:860px){ #caseMain .pair{ grid-template-columns:1fr; } }
+  @media(prefers-reduced-motion:reduce){ #caseMain section.cs{ opacity:1; transform:none; } }
+
+  /* ---------- v11: image thumbnails, simpler home, about ---------- */
+  [hidden]{ display:none !important; }
+  #projects .project{ padding-bottom:56px; }
+  #projects .tagline{ margin-bottom:18px; }
+  .thumb{ display:block; border-radius:14px; overflow:hidden; aspect-ratio:16/9; background:#EFEFEB; margin-bottom:14px; }
+  .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .thumb .soon,#caseMain .box.soon{ width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:14px; border:1px dashed #cfcfc8; border-radius:14px; }
+  #caseMain .fig .hero{ width:100%; border-radius:14px; display:block; aspect-ratio:16/9; object-fit:cover; }
+  .gfx .poster:hover .pbox{ transform:none; box-shadow:none; } .gfx .poster:hover .i1,.gfx .poster:hover .i2{ transform:none; }
+  .intro p{ margin:0 0 6px; }
+  .about.folder{ max-width:none; margin:24px 0 40px; }
+  .about .fbody{ padding:26px 28px 30px; }
+  .ab-grid{ display:grid; grid-template-columns:170px 1fr; gap:30px; align-items:start; margin-bottom:26px; }
+  .about h3{ font-family:'please-display-vf','DM Sans',system-ui,sans-serif; font-weight:500; font-size:26px; letter-spacing:-.02em; color:var(--navy); margin:0 0 10px; }
+  .about p{ margin:0 0 14px; }
+  .polaroid{ margin:6px 0 0; background:#fff; padding:10px 10px 8px; box-shadow:0 8px 20px rgba(20,25,46,.14); transform:rotate(-3deg); position:relative; }
+  .polaroid .pic{ aspect-ratio:1; background:#F1ECE5; display:flex; align-items:center; justify-content:center; text-align:center; font-size:12px; color:var(--muted); padding:10px; }
+  .polaroid figcaption{ font-size:12px; color:var(--muted); text-align:center; padding-top:7px; }
+  .tape{ position:absolute; top:-10px; left:50%; width:64px; height:20px; background:rgba(242,213,229,.85); transform:translateX(-50%) rotate(-4deg); }
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chips span{ font-size:13px; padding:5px 12px; border-radius:999px; border:1px solid #E5CFDC; background:#FFF8FC; color:var(--navy); }
+  .chips span:nth-child(odd){ background:#fff; }
+  .deck-label{ font-size:13px; font-style: italic; color:var(--muted); margin:0 0 10px !important; }
+  .deck{ position:relative; height:104px; max-width:320px; cursor:pointer; margin-bottom:16px; user-select:none; }
+  .ic{ position:absolute; inset:0 18px 0 0; padding:14px 16px; background:#FFFDF6 repeating-linear-gradient(transparent 0 25px,#EADFE6 25px 26px); border:1px solid #E5CFDC; border-radius:10px; font-size:15px; font-weight:500; color:var(--navy);
+    transform:translate(calc(var(--i,0)*9px),calc(var(--i,0)*7px)) rotate(calc(var(--i,0)*1.5deg - 2deg)); z-index:calc(10 - var(--i,0)); transition:transform .35s cubic-bezier(.2,.7,.2,1); }
+  .ic small{ display:block; font-size:12px; font-weight:500; color:var(--magenta); margin-bottom:6px; }
+  @media(max-width:700px){ .ab-grid{ grid-template-columns:1fr; } .polaroid{ max-width:170px; } }
+
+  /* ---------- v12 ---------- */
+  .folder::before{ content:none; }
+  #caseMain{ font-size:18px; line-height:1.75; }
+  #caseMain .tag{ font-size:21px; }
+  #caseMain .lead{ font-size:22px; line-height:1.5; }
+  #caseMain ul.hl li{ margin-bottom:10px; } #caseMain ul.hl li::before{ top:13px; }
+  #caseMain .meta dt{ font-size:14px; } #caseMain .meta dd{ font-size:16px; }
+  #caseMain .kicker{ font-size:15px; } #caseMain .toplink{ font-size:15px; }
+  #caseMain .btn{ font-size:15px; } #caseMain .next{ font-size:15px; }
+  #caseMain section.cs{ opacity:1; transform:none; transition:none; }
+
+  /* ---------- v13 ---------- */
+  #caseMain .toplink{ display:inline-flex; align-items:center; gap:8px; background:var(--navy); color:#fff; padding:10px 20px; border-radius:999px; font-size:15px; font-weight:500; margin-bottom:34px; transition:background .2s; }
+  #caseMain .toplink .la{ display:inline-block; transition:transform .2s; }
+  #caseMain .toplink:hover{ color:#fff; background:#c2287a; } #caseMain .toplink:hover .la{ transform:translateX(-4px); }
+  .folder .tab{ transition:none; border-color:var(--line); }
+  .folder:hover .tab{ transform:none; }
+  .folder .fbody{ box-shadow:none; border-color:var(--line); }
+  .thumb,.thumb:hover{ text-decoration:none; }
+  .intro{ margin-bottom:56px; }
+  #caseMain .fig img.pic{ width:100%; display:block; border-radius:14px; }
+
+  /* ---------- v14 ---------- */
+  .ab-grid{ grid-template-columns:200px 1fr; margin-bottom:0; }
+  .polaroid .pic.filled{ padding:0; overflow:hidden; background:#eee; }
+  .polaroid .pic img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .deck-label{ margin-top:22px !important; }
+  .thumb video,#caseMain .fig video{ width:100%; height:100%; display:block; object-fit:cover; border-radius:inherit; }
+  #caseMain .fig video{ height:auto; border-radius:14px; }
+  #caseMain img.pic,#caseMain img.hero{ cursor:zoom-in; }
+  #lb{ position:fixed; inset:0; z-index:200; background:rgba(20,25,46,.97); display:flex; align-items:center; justify-content:center; padding:56px 70px; }
+  #lb img{ max-width:100%; max-height:100%; object-fit:contain; border-radius:6px; box-shadow:0 20px 60px rgba(0,0,0,.35); }
+  #lb .lb-x{ position:absolute; top:18px; right:22px; width:44px; height:44px; border-radius:50%; border:none; background:#fff; color:var(--navy); font-size:26px; line-height:1; cursor:pointer; }
+  #lb .lb-x:hover{ background:var(--magenta); color:#fff; }
+  #lb .lb-nav{ position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; border:none; background:rgba(255,255,255,.16); color:#fff; font-size:26px; cursor:pointer; }
+  #lb .lb-nav:hover{ background:rgba(255,255,255,.3); } #lb .prev{ left:16px; } #lb .next{ right:16px; }
+  #lb .lb-cap{ position:absolute; bottom:16px; left:0; right:0; text-align:center; color:#fff; font-size:14px; margin:0; }
+  @media(max-width:700px){ .ab-grid{ grid-template-columns:1fr; } #lb{ padding:56px 12px; } }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="layout">
+
+  <aside>
+    <div>
+      <a class="brand" href="#/">Meher Anklesaria.</a>
+      <ul class="index" id="index"></ul>
+    </div>
+    <div class="side-links">
+      <a href="https://www.linkedin.com/in/meheranklesaria/" target="_blank">LinkedIn</a>
+      <a href="#">Resume</a>
+      <a href="mailto:sunankles@gmail.com" target="_blank">Email</a>
+    </div>
+  </aside>
+
+  <main id="top">
+    <span id="work-top"></span>
+    <section class="intro">
+      <h1>Hi, I'm Meher.<br><em>I bring intention to every pixel.</em></h1>
+      <p>Product designer studying at Cal Poly SLO.</p>
+      <p class="status"><i></i> Open to part-time roles and summer internships</p>
+    </section>
+    <span id="work"></span>
+    <div id="projects"></div>
+    
+
+    <section class="about folder" id="about"><span class="tab">About</span><div class="fbody">
+      <div class="ab-grid">
+        <figure class="polaroid"><span class="tape"></span><div class="pic">Add a photo of you</div><figcaption>me!</figcaption></figure>
+        <div>
+          <h3>Hi again, I'm Meher.</h3>
+          <p>I'm a graphic and product designer studying at Cal Poly SLO. I work across editorial, print, and product design. My work is particularly focuses on user experiences, with an emphasis on clean layout and typography.</p>
+          <div class="chips"><span>Product Design</span><span>Graphic Design</span><span>Hack4Impact</span><span>UX Fest SLO</span><span>Mustang News</span><span>Solidigm</span></div>
+          <p class="deck-label">Tap the cards to shuffle! ↓</p>
+      <div class="deck" id="deck">
+        <div class="ic"><small>Currently</small>drinking Thai tea!</div>
+        <div class="ic"><small>Go-to shaved ice syrup?</small>Piña colada and POG!</div>
+        <div class="ic"><small>Favorite typeface</small>DM Sans >:)</div>
+        <div class="ic"><small>Hot take</small>Typography shouldn't be invisible! (Butterick convinced me)</div>
+      </div>
+        </div>
+      </div>
+    </div></section>
+
+    <footer>© 2026 Meher Anklesaria</footer>
+  </main>
+  <main id="caseMain" hidden></main>
+</div>
+
+<div id="lb" hidden aria-modal="true" role="dialog" aria-label="Image viewer">
+  <button class="lb-x" aria-label="Close image">×</button>
+  <button class="lb-nav prev" aria-label="Previous image">‹</button>
+  <img alt="">
+  <button class="lb-nav next" aria-label="Next image">›</button>
+  <p class="lb-cap"></p>
+</div>
+<script>
+  // ---- About polaroid: set a photo path here, e.g. 'images/me.jpg' (leave '' to show the placeholder) ----
+  const ABOUT_PHOTO='images/me.jpg';
+  const ABOUT_CAPTION='';   // e.g. 'me, at Pismo Beach'. Leave '' to keep the caption written in the HTML.
+  const THUMBS={"ipod-wire": "images/ipod-mockup.png", "table-talk": "images/tabletalk-slides.jpg", "much-hope":"images/muchhope-mockup.png", "dirty": "images/dirty-mockup.png","beli":"images/beli-mockup.jpg" };
+  // To swap a thumbnail, set a path, e.g. 'dirty':'images/dirty.jpg'
+  // ----- intro: word reveal, variable-weight letters,  -----
+  (function(){
+    const h=document.querySelector('.intro h1'); if(!h) return; let i=0;
+    const wrap=n=>[...n.childNodes].forEach(c=>{
+      if(c.nodeType===3){ const f=document.createDocumentFragment();
+        c.textContent.split(/(\s+)/).forEach(t=>{ if(!t.trim()){f.appendChild(document.createTextNode(t));return;}
+          const sp=document.createElement('span'); sp.className='w'; sp.innerHTML=[...t].map(x=>'<span class="l">'+x+'</span>').join(''); sp.style.animationDelay=(0.1+i++*0.06)+'s'; f.appendChild(sp); });
+        c.replaceWith(f);
+      } else if(c.nodeType===1 && c.tagName!=='BR') wrap(c); });
+    wrap(h);
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches||matchMedia('(pointer:coarse)').matches) return;
+    const letters=[...h.querySelectorAll('.l')];
+    document.addEventListener('pointermove',e=>{
+      if(document.getElementById('top').hidden) return;
+      letters.forEach(l=>{ const r=l.getBoundingClientRect(); const d=Math.hypot(e.clientX-(r.left+r.width/2),e.clientY-(r.top+r.height/2)); l.style.fontVariationSettings="'wght' "+Math.round(450+350*Math.max(0,1-d/170)); });
+    });
+  })();
+
+
+  // ----- About polaroid photo -----
+  (function(){ const pic=document.querySelector('.polaroid .pic'), cap=document.querySelector('.polaroid figcaption');
+    if(pic&&ABOUT_PHOTO){ pic.classList.add('filled'); pic.innerHTML='<img src="'+ABOUT_PHOTO+'" alt="Meher">'; }
+    if(cap&&ABOUT_CAPTION) cap.textContent=ABOUT_CAPTION; })();
+  // ----- Image viewer: click a case study image to enlarge; X, Esc or the dark background closes -----
+  (function(){
+    const lb=document.getElementById('lb'), big=lb.querySelector('img'), cap=lb.querySelector('.lb-cap');
+    let list=[], at=0;
+    const show=i=>{ at=(i+list.length)%list.length; big.src=list[at].currentSrc||list[at].src; big.alt=list[at].alt; cap.textContent=list[at].alt; };
+    const open=i=>{ lb.hidden=false; document.body.style.overflow='hidden'; show(i); lb.querySelector('.lb-x').focus(); lb.classList.toggle('single',list.length<2); lb.querySelectorAll('.lb-nav').forEach(b=>b.style.display=list.length<2?'none':''); };
+    const close=()=>{ lb.hidden=true; document.body.style.overflow=''; big.removeAttribute('src'); };
+    document.addEventListener('click',e=>{
+      const im=e.target.closest&&e.target.closest('#caseMain img.pic, #caseMain img.hero');
+      if(im){ list=[...document.querySelectorAll('#caseMain img.pic, #caseMain img.hero')]; open(list.indexOf(im)); return; }
+      if(lb.hidden) return;
+      if(e.target.closest('.lb-x')||e.target===lb) close();
+      else if(e.target.closest('.prev')) show(at-1);
+      else if(e.target.closest('.next')) show(at+1);
+    });
+    addEventListener('keydown',e=>{ if(lb.hidden) return; if(e.key==='Escape') close(); if(e.key==='ArrowLeft'&&list.length>1) show(at-1); if(e.key==='ArrowRight'&&list.length>1) show(at+1); });
+    addEventListener('hashchange',()=>{ if(!lb.hidden) close(); });
+  })();
+
+  // ----- scroll progress -----
+  (function(){ const bar=document.getElementById('progress'); if(!bar) return;
+    addEventListener('scroll',()=>{ const m=document.documentElement.scrollHeight-innerHeight; bar.style.transform='scaleX('+(m>0?scrollY/m:0)+')'; },{passive:true}); })();
+  // ----- shuffle the index cards -----
+  (function(){ const d=document.getElementById('deck'); if(!d) return;
+    const lay=()=>[...d.children].forEach((c,i)=>c.style.setProperty('--i',i)); lay();
+    d.addEventListener('click',()=>{ d.appendChild(d.firstElementChild); lay(); }); })();
+  const ph=t=>({ph:t}), T=t=>'['+t+']';
+  const img=(src,alt)=>({src,alt:alt||''});   // use img('images/photo.jpg','description') in place of ph('...')
+  const CASES={
+  'much-hope':{title:'Much Hope website',kicker:'Web Design · Volunteer Platform',
+   tag:"A volunteer platform for a small non-profit, designed from scratch so people can find events and sign up as easily as possible.",
+   meta:{Role:'Product Designer',Timeline:"Winter – Spring Quarter '26",Team:'Team project',Output:'Website + prototype'},
+   links:[['View prototype','https://tinyurl.com/2w9njf7k']],
+   hero:'Hero image: the Past Events page',
+   s:[['Overview',["Much Hope had been running out of a church's website. We built them one of their own.","Much Hope is a non-profit that relies on volunteers to run its community events. My team designed its website from the ground up around one job: making it easy for a volunteer to find an event and sign up."],0,'lead'],
+    ['The problem',["Design a website that creates a space for volunteers to sign up for events as easily and seamlessly as possible.","Because the organization had been operating out of a church's website, there was no dedicated space built around what volunteers actually need."]],
+    ['Working with the client',["Our goal as a team was to create a product from scratch that served the needs of the non-profit. We began by discussing objectives with the client.","Their supervisor explained that Much Hope had been operating out of a church's website until now, and it was up to us to decide what mattered most to volunteers."],[img('images/muchhope-client.png','Much Hope Client')]],
+    ['Defining the experience',["To work out what a volunteer would be searching for, my team and I broke down the tasks and journeys of a user. That exercise shaped the structure of the whole site.","We narrowed the navigation to Home, About Us, Contact and More, and determined that two profiles were needed: one for the volunteer and one for the admin.","Throughout this process, I made sure to voice the importance of a dedicated Events page, so prospective volunteers can gauge their interest before committing."],[img('images/muchhope-profile-wireframe.png','Wireframe'),img('images/muchhope-wireframe.png','Wireframe')]],
+    ['Key decisions',0,0,0,["A dedicated Events page, so prospective volunteers can see what is coming up and gauge their interest","Two profiles, one for volunteers and one for admins, so each sees only what is relevant to them","A short navigation of Home, About Us, Contact and More, to keep the site simple for first-time visitors"]],
+    ['Wireframes',["We started with low-fidelity wireframes to settle the layout before any visual design. The events page pairs a featured event with its details and two clear actions, View Information and Select Hours, followed by a row of other upcoming events with a Register Now action."],[img('images/muchhope-popup.png','Pop-up')]],
+    ['Final design',["The final design carries that structure into a calm visual language: a purple sidebar for navigation and photo-led event cards that show the people behind each event. Volunteers can also look back at events they have helped with on the Past Events page."],[img('images/muchhope-volunteer.png','Volunteer'),img('images/muchhope-events.png','Events')]],
+    ['Reflection',["Working with a real client taught me that designing a product starts with understanding how people currently work, not just what screens they need. Because Much Hope had been relying on a church website, our challenge was to create a more dedicated experience for volunteers while keeping the organization’s needs in mind. Collaborating with a team also taught me to communicate design decisions clearly and advocate for ideas that could make the experience more useful, such as a dedicated Events page." , "With real volunteers, I would next test how easily they can find relevant events and complete sign-ups without assistance. I’d also observe how administrators manage volunteer information behind the scenes. Their feedback would help us identify gaps between the structure we designed and the organization’s day-to-day needs."]]]},
+
+  'dirty':{title:'dirty. website design',kicker:'Web Design · E-Commerce and Booking',
+   tag:"A website and booking flow for a Cal Poly student-run dirty soda business that lived almost entirely on Instagram.",
+   meta:{Role:'Product Designer',Timeline:'3 weeks',Team:'Me and a teammate',Output:'Website + prototype'},
+   links:[['View prototype','https://tinyurl.com/3vvustey']],
+   hero:'Hero image: dirty. home page',
+   s:[['Overview',["Every dirty soda brand looked retro, so we built one that doesn't.","dirty. is a dirty soda business run by Cal Poly students. It had no website of its own, so my partner and I designed one that could handle e-commerce and make its services easy to discover and book."],0,'lead'],
+    ['The problem',["Design a website for a local business that allows them to deal with e-commerce.","Most of the business's orders were taken through Instagram, and its services were not advertised very well."]],
+    ['Working with the business',["I came across this business through Cal Poly. I conversed back and forth with the owners to flesh out the brand in a way that was unique and interesting.",('Initially our understanding of their brand was a retro cow-girl aesthetic, but they wanted to transition to a more timeless look. We steered the brand identity to a more sophisticated direction, prioritizing a more refined color palette and typography to elevate their digital presence.')]],
+    ['Ideation',["We explored layouts and brand directions side by side before settling on one."],[img('images/dirty-sketches.png','Wireframes'),img('images/dirty-inspiration.png','Inspiration')]],
+    ['Moodboard',["One thing we noticed from competitors was that there was little variation from the retro theme across the brands that sell dirty soda.","That was an opportunity to explore the brand further and see if we could set dirty. apart from its competition."],[img('images/dirty-exploration.png','Exploration for dirty.')]],
+    ['Designing the booking flow',["For our booking page, our priority was to make the consultation as seamless and stress-free as possible.",('In order to make the process as easy as possible, we included a tailored package section and a pricing calculator, so that the user could feel confident and comfortable in their decision to request a booking. We understand that catering at a large-scale can be overwhelming, so we took all the guesswork out. ')],[img('images/booking-flow.gif','Booking flow for dirty.')]],
+    ['Final screens',["The finished site brings the shop, the services and the booking page together under a brand that stands apart from the retro look."],[img('images/dirty-homescreen.png','dirty. Home screen'),img('images/dirty-booking.png','dirty. booking page'), img('images/dirty-calculator.png','dirty. calculator')]],
+    ['Reflection',["This project taught me that a strong brand needs to do more than look distinctive. Since dirty. relied on Instagram for orders and therefore had limited visibility into its services, I wanted the website and booking flow to feel cohesive with the brand, but also reduce any uncertainty for potential customers.","With real customers, I would test whether the consultation process feels straightforward. Next, I would build out the booking experience with clearer confirmation, then explore how the site could support the business as its customer base grows."]]]},
+
+  'beli':{title:'Beli Redesign',kicker:'UX Research · Product Design · App Redesign',
+   tag:"A redesign of Beli, the social restaurant ranking app, focused on finding past meals, comparing restaurants fairly and getting started faster.",
+   meta:{Role:'Product Designer',Timeline:'5 weeks',Team: 'Solo',Tools:'Figma'},
+   links:[['View presentation','https://www.figma.com/proto/wHHz5lFnFZzOAahxbyV22n/Art-3343-P1?node-id=179-2&m=draw&scaling=contain&content-scaling=fixed&page-id=0%3A1&t=5pfcsg2zIXKDSWdh-1']],
+   hero:'Hero image: the redesigned ranking screen',
+   s:[['Overview',["Beli turns restaurant ranking into a game, but the app often gets in its own way.","Beli is a social app where people rank the restaurants they have eaten at and share those rankings with friends. This project redesigns the app based on an audit of where it falls short in everyday use."],0,'lead'],
+    ['Understanding the app',["Before redesigning anything, I looked at who the app is for, what it offers and what is holding it back."],0,0,["Target audience: people who like to eat out, keep track of where they have been, and share recommendations with friends. "+T('Confirm and add specifics.'),"Main features: head-to-head restaurant ranking, a social feed, a profile with dining history, a map of visited places and a leaderboard","Business issue: a long onboarding that requires referrals can deter people from joining before they see any value"]],
+    ['Pain points',["I audited the app and grouped the problems I found into five areas."],[img('images/beli-annotate.jpg','Beli annotations')],0,["Content: many restaurants are missing and some have incorrect locations, so past restaurants are hard to find or recall, especially when they do not appear on the map","Organizational: the app records dining history, but past restaurants are difficult to access and organize, and the profile makes users scroll through a long amount of information to reach each section","Technical: entering information is tedious and requires pressing every single button, the feed is hard to look through, and onboarding is long and requires referrals","Visual design: unnecessary features such as the leaderboard get priority, the clutter is overwhelming, and the comparison table, which is central to the app, gets very little space and is pressed against other features","Usability: head-to-head ranking is a unique idea, but the process is awkward and long, and restaurants are not compared by situation, such as fine dining against a food truck or small plates against family style"]],
+    ['Competitor analysis',[('')+" I compared Beli with similar apps on how they rate restaurants, how easily past visits can be found, how accurate their maps are, and how quickly a new user can get started."],[img('images/beli-competitor.jpg','Beli competitor analysis')]],
+    ['Design goals',["The audit pointed to four goals for the redesign."],0,0,["Make past restaurants easy to find and organize","Make rankings fair by comparing like with like","Shorten onboarding and cut down on data entry","Give the comparison view and core features priority over secondary ones"]],
+    ['Task flow',[('The issue with the current Beli task flow is that it does not prioritize the main function of the app, which is the rating and ranking. I wanted to make sure that it became the highlight rather than something that did not get a second thought. I reduced friction by 50% and made it as easy as possible for a user to give their rating.')],[img('images/beli-taskflow.jpg','Beli task flow')]],
+    ['Sketches',[('I explored the idea of having a memory-recollection item, which would jog the memory of the user. Beli requires you to rank 10 restaurants in order to start their algorithm, so a feature that collects the food images in your camera roll would make that task infinitely easier. I additionally explored the idea of pushing the additional details like images and dish name to the last screen, so that the user does not get frustrated with the long task.')],[img('images/beli-sketches.jpg','Sketches for Beli')]],
+    ['Final screens',[('I expanded the rating scale from 3 to 5 options, adding retention triggers like Recent and Camera Roll. I also gave the ranking screen its own space instead of crowding it with the rest of the features. ')],[img('images/beli-final1.jpg','Beli Final Screens'),img('images/beli-final2.jpg','Beli Final Screens')]],
+    ['Reflection',["Redesign is not simply about making an interface look cleaner. Beli already offers a compelling way to track and rank restaurants, but examining its experience revealed moments where the interface could create unnecessary friction. I learned to look beyond individual screens and consider how the product’s features work together. " ," I would test the redesigned ranking flow with users to see whether it feels more intuitive. I’d also test how easily users can revisit past experiences and complete common tasks. "]]]},
+
+  'table-talk':{title:'Table Talk',kicker:'Mobile App · UX Fest Designathon 2026',
+   tag:"A party app you play with friends to expand your general knowledge and learn with and from each other.",
+   meta:{Role:'Product Designer',Timeline:'24 hours',Team:'5 designers, including me',Focus:'UX research, low-fidelity and high-fidelity screens, prototyping'},
+   links:[['View prototype','https://www.figma.com/proto/TFsVif3ExleHCMw7iDjRVc/UXF-2026-?page-id=55%3A60&node-id=76-506&viewport=2547%2C-1026%2C1.08&t=kaljy7yrhMWS2v37-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=76%3A506']],
+   hero:'Hero image: high-fidelity mockups of the screens',
+   s:[['Overview',["We turned learning from a lonely chore into a party game.","Table Talk was our team's submission to the UX Fest Designathon, a 24-hour challenge to reimagine how people learn. We designed a game you play with friends to expand your general knowledge."],0,'lead'],
+    ['The prompt',["Design a mobile or web prototype that reimagines learning as a continuous, evolving practice rather than a path toward completion. Your solution should help learners stay curious, engaged and growing, without relying on traditional markers of \"finishing.\""]],
+    ['Our problem statement',["Because the modern world prioritizes 'knowing' over 'wondering,' we need to transform learning from a lonely chore into a continuous, friend-centered cycle of discovery and sharing."]],
+    ['Ideation',["My team and I ideated extensively to come up with a robust solution. We decided to transform learning from a lonely chore into a continuous, friend-centered cycle of discovery by gamifying the app.","That led to the idea of a party app: a game you can play with friends to expand your general knowledge, and to learn with and from the people around you."],[img('images/table-brainstorm.png','Brainstorm'),img('images/table-affinity.png','Affinity Mapping'), img('images/table-crazy8.png','Crazy 8s')]],
+    ['User research',["We also completed user interviews to improve the product, from the user flow to the overall design."],[img('images/table-interview.png','user interview'),img('images/table-journey.png','Journey Mapping')]],
+    ['Key decisions',0,0,0,["A game format rather than a course, so there is no finish line to reach","A friend-centered loop, where learning happens with and from other people"]],
+    ['Final design',["In 24 hours we took the idea from low-fidelity sketches to high-fidelity screens and a working prototype. Players start by choosing the topics they are curious about, browse short videos, articles and photos for each one, and can present a topic to the group. "+('')],[img('images/table-screens.png','Screens for Tabletalk')]],
+    ['Reflection',["Working on Table Talk in a 24-hour designathon taught me how to move quickly towards a tangible product under tight constraints. Our team explored how learning could be both a journey of curiosity and discovery. Through user research, I learned the importance of grounding an idea in how people might actually interact with it, especially when designing an experience meant to be shared with friends.", "With more time, I would test the prototype with groups of friends to understand whether the gameplay encourages meaningful discussion, and simultaneously stays exciting and encourages retention."]]]},
+
+  'ipod-wire':{title:'iPod Wire',kicker:'Web Design and Development · Editorial',
+   tag:"A mini news site, set in the 2000s, that tells the story of the iPod through real press coverage.",
+   meta:{Role:'Product Designer & Developer',Timeline:'3 weeks',Team:'Individual project',Tools:'HTML, CSS'},
+   links:[['Download project','https://drive.google.com/uc?export=download&id=1DNJFsQdN3aaILiLIjGcDqJRCmSP9c-_b']],
+   hero:'Hero image: the iPod Wire home page',
+   s:[['Overview',["I built a news site for a world where the iPod was still new.","iPod Wire is a mini news webpage that exists on a retrospective date. I focused on the emergence of the iPod and designed the site to look and feel like the web of the 2000s."],0,'lead'],
+    ['The problem',["Develop a mini news webpage existing on a retrospective date."]],
+    ['Concept',["I chose to focus on the emergence of the iPod and designed the site to mimic a 2000s-esque look, paying attention to how buttons and navigation were used as a tool in older web design.","I also became aware of the Analog Renaissance recently: many listeners are reverting to physical media to avoid paying monthly fees on music. That made the iPod, a device built around owning your music, a natural subject."]],
+    ['Inspiration and sketching',["I looked at the iPod itself, and at 2000s Japanese aesthetics when thinking about buttons and gradients. Here is my inspiration board and my sketching process."],[img('images/ipod-moodboard.jpg','Moodboard for Ipod-Wire'),img('images/ipod-sketches.jpg','Sketches for Ipod-Wire')]],
+    ['Layout and type',["The page follows a newspaper structure: three columns for Latest Stories, Featured and Up and Coming, with On the Wire and Stay in the Loop sections below. Navigation sits in a gradient bar with Technology, Economics, Culture, Design and More, and Read More buttons use glossy gradients in the spirit of 2000s interfaces.","Headlines are set in Politica Condensed, body copy in Arial, and small labels in a monospace.", "I also experimented with use of fonts in the logo design."],[img('images/ipod-logodesign.png','Logo designs for ipod-wire')]],
+    ['Content',["Every story links out to real coverage from outlets including The New York Times, Wired, CNET, ZDNet and PBS, so the site works as a small archive of how the iPod was reported."]],
+    ['Key decisions',0,0,0,["Treating buttons and navigation as the main period detail, not only the colors","A dense three-column newspaper layout that suits a news site","Real articles and dates, so the retrospective setting feels credible"]],
+    ['Final design',["The finished site is built in HTML and CSS."],[img('images/ipod-site.png','Final Ipod Screen')]],
+    ['Reflection',["Coding iPod Wire with HTML helped me understand how visual design decisions translate into a working interface. It was interesting to work backwards with type hierarchy to determine the emphasis on certain sections.", "If I revisited the project, I would refine the responsive behavior and test the navigation across different screen sizes. I’d also look for opportunities to make the experience more accessible without losing its visual character. The process taught me to consider implementation as part of design itself, which is usually removed from the typical design process."]]]}
+  };
+  const ORDER=['much-hope','beli','table-talk','ipod-wire','dirty'];
+  const PROJ={
+    'much-hope':['01','Web Design','Much Hope','A volunteer platform where people can sign up for events easily.'],
+    'dirty':['02','Web and E-commerce','dirty. Website Design','A website and booking flow for a student-run dirty soda business.'],
+    'beli':['03','UX Research · App Redesign','Beli Redesign','A redesign of the restaurant ranking and discovery app.'],
+    'table-talk':['04','Mobile App · UX Fest Designathon 2026','Table Talk','A party app you play with friends to learn together.'],
+    'ipod-wire':['05','Web Design · Editorial','iPod Wire','An editorial site that tells the iPod story through its press coverage.']
+  };
+  const $=q=>document.querySelector(q), slug=n=>n.toLowerCase().replace(/[^a-z]+/g,'-');
+  const todo=t=>t.startsWith('[')?' todo':'';
+  const isVid=u=>/\.(mp4|webm|mov)(\?.*)?$/i.test(u);
+  const media=(u,alt,cls)=>isVid(u)?`<video class="${cls||''}" src="${u}" autoplay muted loop playsinline disablepictureinpicture aria-label="${alt}"></video>`:`<img class="${cls||''}" src="${u}" alt="${alt}">`;
+  const thumbHTML=(k,cls)=>THUMBS[k]?media(THUMBS[k],PROJ[k][2],cls):`<span class="soon">Thumbnail coming soon</span>`;
+  const fig=f=>f.src?`<figure class="fig">${media(f.src,f.alt,'pic')}</figure>`:`<figure class="fig"><div class="box">${f.ph}</div></figure>`;
+  const home=$('#top'), cm=$('#caseMain'), idx=$('#index');
+  let spy, cio, io, cur=null;
+
+  // home project list: name, one line, image, link
+  $('#projects').innerHTML=ORDER.map((k,i)=>{ const [,cat,name,line]=PROJ[k]; const n=String(i+1).padStart(2,'0'); return `
+    <section class="project" id="p-${k}">
+      <p class="kicker"><b>${n}</b>${cat}</p>
+      <h2>${name}</h2>
+      <p class="tagline">${line}</p>
+      <a class="thumb" href="#/work/${k}" data-go="${k}">${thumbHTML(k)}</a>
+      <a class="cs-link" href="#/work/${k}" data-go="${k}">Read case study <span class="arr">→</span></a>
+    </section>`; }).join('');
+  io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('in')),{threshold:.08});
+  document.querySelectorAll('.project').forEach(p=>io.observe(p));
+
+  function buildIndex(items){
+    idx.innerHTML=items.map(i=>i[2]?`<li><a href="#/${i[2]==='home'?'':i[2]}" data-go="${i[2]}">${i[0]}</a></li>`:`<li><a href="#" data-t="${i[1]}">${i[0]}</a></li>`).join('');
+    const links=[...idx.querySelectorAll('a')];
+    links.forEach(a=>{ if(a.dataset.t) a.onclick=e=>{ e.preventDefault(); document.getElementById(a.dataset.t).scrollIntoView({behavior:'smooth'}); }; });
+    spy&&spy.disconnect();
+    spy=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) links.forEach(l=>l.classList.toggle('active',l.dataset.t===e.target.id)); }),{rootMargin:'-35% 0px -55% 0px'});
+    links.forEach(a=>{ const t=a.dataset.t&&document.getElementById(a.dataset.t); t&&spy.observe(t); });
+  }
+  const HOME_IDX=ORDER.map(k=>[PROJ[k][2].replace(' website design',''),'p-'+k]).concat([['About','about']]);
+
+  function showHome(){ cm.hidden=true; home.hidden=false; buildIndex(HOME_IDX); document.title='Meher Anklesaria — Product Designer'; }
+  function showCase(k){
+    const p=CASES[k], i=ORDER.indexOf(k), prev=ORDER[(i+4)%5], next=ORDER[(i+1)%5];
+    home.hidden=true; cm.hidden=false; document.title=p.title+' — Meher Anklesaria';
+    const hero=THUMBS[k]?`<figure class="fig">${media(THUMBS[k],p.title,'hero')}</figure>`:`<figure class="fig"><div class="box soon">${p.hero}</div></figure>`;
+    cm.innerHTML=`<a class="toplink" href="#/work" data-go="work"><span class="la">←</span> All work</a>
+     <p class="kicker">${p.kicker}</p><h1>${p.title}</h1><p class="tag${todo(p.tag)}">${p.tag}</p>
+     <div class="folder"><span class="tab">Project file</span><div class="fbody"><dl class="meta">${Object.entries(p.meta).map(([a,b])=>`<div><dt>${a}</dt><dd class="${todo(b).trim()}">${b}</dd></div>`).join('')}</dl></div></div>
+     ${hero}
+     <div class="btns">${p.links.map(l=>`<a class="btn" href="${l[1]}" target="_blank" rel="noopener">${l[0]} →</a>`).join('')}</div>
+     ${p.s.map(([h,ps,figs,cls,bul])=>`<section class="cs" id="cs-${slug(h)}"><h2>${h}</h2>
+       ${(ps||[]).map((t,n)=>`<p class="${(cls&&n===0?cls:'')}${todo(t)}">${t}</p>`).join('')}
+       ${bul?`<ul class="hl">${bul.map(b=>`<li class="${todo(b).trim()}">${b}</li>`).join('')}</ul>`:''}
+       ${figs?(figs.length>1?`<div class="pair">${figs.map(fig).join('')}</div>`:fig(figs[0])):''}</section>`).join('')}
+     <nav class="next"><a href="#/work/${prev}" data-go="${prev}">← Previous<b>${CASES[prev].title}</b></a><a class="r" href="#/work/${next}" data-go="${next}">Next →<b>${CASES[next].title}</b></a></nav>`;
+    buildIndex(p.s.map(x=>[x[0],'cs-'+slug(x[0])]));
+    cio&&cio.disconnect(); cio=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('in')),{threshold:.1});
+    cm.querySelectorAll('section.cs').forEach(x=>cio.observe(x));
+  }
+  const kickVideos=()=>document.querySelectorAll('video[autoplay]').forEach(v=>{ v.muted=true; const r=v.play(); r&&r.catch&&r.catch(()=>{}); });
+  function render(key){
+    if(CASES[key]){ showCase(key); scrollTo(0,0); }
+    else { showHome(); if(key==='work') requestAnimationFrame(()=>document.getElementById('work').scrollIntoView()); else scrollTo(0,0); }
+    cur=key; kickVideos();
+  }
+  const keyOf=h=>{ const m=(h||'').match(/^#\/work\/([\w-]+)/); return m&&CASES[m[1]]?m[1]:(h==='#/work'?'work':'home'); };
+  const hashOf=k=>CASES[k]?'#/work/'+k:(k==='work'?'#/work':'#/');
+  function navigate(k){ render(k); try{ if(location.hash!==hashOf(k)) location.hash=hashOf(k); }catch(e){} }
+
+  // every [data-go] link works on click, with no dependence on URL hashes
+  document.addEventListener('click',e=>{
+    const a=e.target.closest&&e.target.closest('[data-go]'); if(!a) return;
+    e.preventDefault(); navigate(a.dataset.go);
+  });
+  addEventListener('hashchange',()=>{ const k=keyOf(location.hash); if(k!==cur) render(k); });
+  render(keyOf(location.hash));
+
+</script>
+</body>
+</html>
